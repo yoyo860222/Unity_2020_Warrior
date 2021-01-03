@@ -10,11 +10,8 @@ public class Scenescontrol : MonoBehaviour
     
     public void StartGame()
     {
+        AudA.PlayOneShot(soundClick,2);
         Invoke("DelayStartGame", 3);
-    }
-    private void DelayStartGame()
-    {
-        SceneManager.LoadScene("入場場景");
     }
 
 
@@ -30,6 +27,11 @@ public class Scenescontrol : MonoBehaviour
     {
         //應用程式.離開()
         Application.Quit();
+    }
+
+    private void DelayStartGame()
+    {
+        SceneManager.LoadScene("入場場景");
     }
 
 

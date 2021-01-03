@@ -35,6 +35,12 @@ public class Player : MonoBehaviour
 
     #endregion
 
+    public void Start()
+    {
+        rig = GetComponent<Rigidbody2D>();
+
+    }
+
     #region 方法
 
     private void Test()
@@ -52,65 +58,43 @@ public class Player : MonoBehaviour
         return "Player_1";
     }
 
-    /// <summary>
-    /// 走路方式
-    /// </summary>
-    /// <param name="direction">走路方向</param>
-    /// <param name="sound">走路聲音文字</param>
-    /// <param name="speed">速度</param>
-    /// 預設參數:選填式參數(有預設值，可不必設定)
-    /// 選填式參數得要寫在(A,B,C,最後方)
-    private void Move(string direction, string sound, int speed=50)
-    {
-        print("方向:"+direction);
-        print("聲音文字:"+sound);
-        print("速度:"+speed);
-        print("走路音效");
+   
 
+
+    #endregion
+
+    public float X;
+
+    public void Update()
+    {
+        X = Input.GetAxis("Horizontal");
+        Move();
     }
 
-    private void Move()
+    public void Move()
     {
-        print("移動");
+        rig.velocity = new Vector2(X * movespeed, rig.velocity.y);
     }
 
-    private void Jump()
+    public void Jump()
     {
-        print("跳躍");
+
     }
 
     private void Shoot()
     {
-        print("開槍");
+
     }
 
-    private void Hurt(int damage =1)
+    private void Hurt(int damage = 1)
     {
-        print("傷害:"+ damage);
+
     }
 
     private void death(string objectname)
     {
-        print("死亡:" + objectname);
+
     }
 
-
-    #endregion
-
-    #region 靜態屬性和方法
-   
-    private void Start()
-    {
-        Physics2D.gravity = new Vector2(0, -20);
-        print("所有攝影機數量:" + Camera.allCamerasCount);
-        print("2D重力大小:"+ Physics2D.gravity);
-        
-        //練習
-        Mathf.Floor(9.999f);
-        Vector3.Distance(new Vector3(1,1,1) , new Vector3(22,22,22));
-    }
-
-
-    #endregion
 
 }
