@@ -106,15 +106,8 @@ public class Player : MonoBehaviour
         print("2D重力大小:"+ Physics2D.gravity);
         
         //練習
-        Application.OpenURL("https://unity.com/");
         Mathf.Floor(9.999f);
         Vector3.Distance(new Vector3(1,1,1) , new Vector3(22,22,22));
-    }
-    private void Update()
-    {
-        print("是否輸入任意鍵:" + Input.anyKeyDown);
-        print("遊戲經過時間:" + Time.time);
-        Input.GetKeyDown("space");
     }
 
 

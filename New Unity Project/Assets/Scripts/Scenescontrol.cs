@@ -4,11 +4,20 @@ using UnityEngine.SceneManagement;
 
 public class Scenescontrol : MonoBehaviour
 {
+    public AudioSource AudA;
+    public AudioClip soundClick;
+
     
     public void StartGame()
     {
+        Invoke("DelayStartGame", 3);
+    }
+    private void DelayStartGame()
+    {
         SceneManager.LoadScene("入場場景");
     }
+
+
 
     public void BacktoMenu()
     {
