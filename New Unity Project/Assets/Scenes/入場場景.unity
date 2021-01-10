@@ -281,6 +281,8 @@ MonoBehaviour:
   bulletspeed: 0
   soundFire: {fileID: 0}
   health: 5
+  location: {x: 0, y: -1.1, z: 0}
+  range: 0.2
   X: 0
 --- !u!70 &49061203
 CapsuleCollider2D:
@@ -296,7 +298,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.00000011920929, y: -0.20256472}
-  m_Size: {x: 0.5750792, y: 1.885787}
+  m_Size: {x: 0.61, y: 1.74}
   m_Direction: 0
 --- !u!50 &49061204
 Rigidbody2D:
@@ -313,7 +315,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 3
+  m_GravityScale: 2.75
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -6386,7 +6388,7 @@ GameObject:
   - component: {fileID: 1011505811}
   - component: {fileID: 1011505810}
   - component: {fileID: 1011505809}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: "\u5730\u677F"
   m_TagString: Untagged
   m_Icon: {fileID: 0}

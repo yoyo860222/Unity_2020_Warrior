@@ -2,7 +2,7 @@
 
 public class Player : MonoBehaviour
 {
-#region 練習宣告
+    #region 練習宣告
 
     [Header("移動速度"), Range(0, 1000)]
     public float movespeed = 10.5f;
@@ -24,9 +24,15 @@ public class Player : MonoBehaviour
 
     [Header("開槍音效")]
     public AudioClip soundFire;
-    
-    [Header("血量"), Range(0,200)]
+
+    [Header("血量"), Range(0, 200)]
     public float health = 100;
+
+    [Header("碰撞判斷位置")]
+    public Vector3 location;
+
+    [Header("碰撞判斷範圍")]
+    public float range;
 
 
     private AudioSource aud;
@@ -71,7 +77,12 @@ public class Player : MonoBehaviour
         Move();
         Jump();
     }
-    
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = new Color(0,0,1,0.4f);
+        Gizmos.DrawSphere(transform.position +location ,range);
+    }
 
     public void Move()
     {
@@ -93,6 +104,7 @@ public class Player : MonoBehaviour
         //Animator 的 設定布林值 run_switch , 判斷X不等於0
         // X 等於 0 時 回傳 false, X 不等於 0 時 回傳 true 
         ani.SetBool("run_switch", X != 0);
+       
 
     }
 
@@ -103,6 +115,18 @@ public class Player : MonoBehaviour
         if (isgrounded && Input.GetKeyDown(KeyCode.Space))
         {
             rig.AddForce(new Vector2(0, jumpheight));
+            
+        }
+
+        Collider2D hit = Physics2D.OverlapCircle(transform.position + location, range, 1 << 8);
+        print(hit.name);
+
+        if (hit)
+        {
+            isgrounded = true;
+        }
+        else
+        {
             isgrounded = false;
         }
     }
