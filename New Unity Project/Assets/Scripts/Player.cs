@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
     public void Start()
     {
         rig = GetComponent<Rigidbody2D>();
-
+        ani = GetComponent<Animator>();
     }
 
     #region 方法
@@ -69,16 +69,42 @@ public class Player : MonoBehaviour
     {
         X = Input.GetAxis("Horizontal");
         Move();
+        Jump();
     }
+    
 
     public void Move()
     {
         rig.velocity = new Vector2(X * movespeed, rig.velocity.y);
+       
+        //如果 按下 D 或 右箭頭
+        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+	    {
+           transform.localEulerAngles = Vector3.zero;
+            print("按D");
+        }
+        //左邊
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            transform.localEulerAngles = new Vector3(0, 180, 0);
+            print("按A");
+        }
+
+        //Animator 的 設定布林值 run_switch , 判斷X不等於0
+        // X 等於 0 時 回傳 false, X 不等於 0 時 回傳 true 
+        ani.SetBool("run_switch", X != 0);
+
     }
+
+    
 
     public void Jump()
     {
-
+        if (isgrounded && Input.GetKeyDown(KeyCode.Space))
+        {
+            rig.AddForce(new Vector2(0, jumpheight));
+            isgrounded = false;
+        }
     }
 
     private void Shoot()
