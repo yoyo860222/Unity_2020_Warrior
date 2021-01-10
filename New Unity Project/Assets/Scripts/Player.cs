@@ -115,11 +115,10 @@ public class Player : MonoBehaviour
         if (isgrounded && Input.GetKeyDown(KeyCode.Space))
         {
             rig.AddForce(new Vector2(0, jumpheight));
-            
+            ani.SetTrigger("Jumping");
         }
 
         Collider2D hit = Physics2D.OverlapCircle(transform.position + location, range, 1 << 8);
-        print(hit.name);
 
         if (hit)
         {
@@ -129,6 +128,9 @@ public class Player : MonoBehaviour
         {
             isgrounded = false;
         }
+
+        ani.SetFloat("jump_float", rig.velocity.y);
+        ani.SetBool("On_the_ground", isgrounded);
     }
 
     private void Shoot()
