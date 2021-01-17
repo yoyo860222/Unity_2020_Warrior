@@ -45,6 +45,7 @@ public class Player : MonoBehaviour
     {
         rig = GetComponent<Rigidbody2D>();
         ani = GetComponent<Animator>();
+        aud = GetComponent<AudioSource>();
     }
 
     #region 方法
@@ -76,12 +77,21 @@ public class Player : MonoBehaviour
         X = Input.GetAxis("Horizontal");
         Move();
         Jump();
+        Shoot();
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = new Color(0,0,1,0.4f);
         Gizmos.DrawSphere(transform.position +location ,range);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Iron_Key")
+        {
+            Destroy(collision.gameObject);
+        }
     }
 
     public void Move()
@@ -92,13 +102,11 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
 	    {
            transform.localEulerAngles = Vector3.zero;
-            print("按D");
         }
         //左邊
         if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
             transform.localEulerAngles = new Vector3(0, 180, 0);
-            print("按A");
         }
 
         //Animator 的 設定布林值 run_switch , 判斷X不等於0
@@ -107,9 +115,7 @@ public class Player : MonoBehaviour
        
 
     }
-
-    
-
+        
     public void Jump()
     {
         if (isgrounded && Input.GetKeyDown(KeyCode.Space))
@@ -135,6 +141,16 @@ public class Player : MonoBehaviour
 
     private void Shoot()
     {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+            //Mouse0 = 滑鼠左鍵
+            //Mouse1 = 滑鼠右鍵
+            //Mouse2 = 滑鼠中鍵
+        {
+            aud.PlayOneShot(soundFire, Random.Range(1.2f, 3.0f));
+            //遊戲物件 暫存變數 生成物件
+            GameObject temp = Instantiate(bullet,bulletspawn.position,bulletspawn.rotation);
+            temp.GetComponent<Rigidbody2D>().AddForce(bulletspawn.right *bulletspeed + bulletspawn.up * 150);
+        }
 
     }
 
