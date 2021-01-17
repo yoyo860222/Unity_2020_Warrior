@@ -25,6 +25,9 @@ public class Player : MonoBehaviour
     [Header("開槍音效")]
     public AudioClip soundFire;
 
+    [Header("得到鑰匙")]
+    public AudioClip soundKey;
+
     [Header("血量"), Range(0, 200)]
     public float health = 100;
 
@@ -85,12 +88,14 @@ public class Player : MonoBehaviour
         Gizmos.color = new Color(0,0,1,0.4f);
         Gizmos.DrawSphere(transform.position +location ,range);
     }
+    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Iron_Key")
         {
             Destroy(collision.gameObject);
+            aud.PlayOneShot(soundKey, 1.5f);
         }
     }
 
