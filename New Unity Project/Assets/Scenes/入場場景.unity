@@ -262,7 +262,7 @@ GameObject:
   - component: {fileID: 49061204}
   - component: {fileID: 49061203}
   - component: {fileID: 49061205}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Warrior
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -375,10 +375,12 @@ MonoBehaviour:
   damageBullet: 50
   soundFire: {fileID: 8300000, guid: cbe0a3b0cc2e4064f86cbf0c51e58990, type: 3}
   soundKey: {fileID: 8300000, guid: 3a545fd4ecc324043bdc70859f670908, type: 3}
-  health: 5
+  health: 100
   location: {x: 0, y: -1.1, z: 0}
   range: 0.2
   X: 0
+  textHp: {fileID: 897183507}
+  imgHp: {fileID: 712645541}
 --- !u!70 &49061203
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -6013,6 +6015,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 49061201}
   speed: 10
+  shakeInterval: 0.05
+  shakeValue: 0.5
+  shakeCount: 3
 --- !u!1 &609711654
 GameObject:
   m_ObjectHideFlags: 0
@@ -6212,9 +6217,13 @@ MonoBehaviour:
   speed: 2
   rangeAtk: 2.5
   attack: 10
+  attackCD: 3.5
+  attackDelay: 0.7
   hp: 2500
   textHp: {fileID: 85676093}
   imgHp: {fileID: 10444781}
+  offsetAttack: {x: 1.53, y: -0.59, z: 0}
+  sizeAttack: {x: 1.95, y: 2.49, z: 1}
 --- !u!70 &691673616
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -41046,7 +41055,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: c9000ed0c31361b42aa0bf899c40a0a9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

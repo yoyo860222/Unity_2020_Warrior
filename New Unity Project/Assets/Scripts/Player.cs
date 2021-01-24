@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -40,7 +41,7 @@ public class Player : MonoBehaviour
     [Header("碰撞判斷範圍")]
     public float range;
 
-
+    
     private AudioSource aud;
     private Rigidbody2D rig;
     private Animator ani;
@@ -52,6 +53,7 @@ public class Player : MonoBehaviour
         rig = GetComponent<Rigidbody2D>();
         ani = GetComponent<Animator>();
         aud = GetComponent<AudioSource>();
+        hpMax = health;
     }
 
     #region 方法
@@ -164,13 +166,33 @@ public class Player : MonoBehaviour
 
     }
 
-    private void Hurt(int damage = 1)
-    {
+    [Header("血量文字")]
+    public Text textHp;
+    
+    [Header("血量圖片")]
+    public Image imgHp;
 
+    private float hpMax;
+
+    public void Hurt(float getDamage)
+    {
+        health -= getDamage;
+        textHp.text = health.ToString();
+        imgHp.fillAmount = health / hpMax;
+
+        if (health <=0)
+        {
+            Death();
+        }
     }
 
-    private void death(string objectname)
+    private void Death()
     {
+        health = 0;
+        textHp.text = 0.ToString();
+        ani.SetBool("die_switch", true);
+        enabled = false;
+        transform.Find("US").gameObject.SetActive(false);
 
     }
 
