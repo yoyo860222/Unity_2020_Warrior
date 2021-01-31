@@ -17,7 +17,7 @@ public class Boss : MonoBehaviour
     public float attack = 10;
 
     [Header("攻擊CD"), Range(0, 10)]
-    public float attackCD = 3.5f;
+    public float attackCD = 1.5f;
 
     [Header("攻擊延遲給玩家的時間"), Range(0, 10)]
     public float attackDelay = 0.7f;
@@ -79,12 +79,17 @@ public class Boss : MonoBehaviour
         textHp.text = hp.ToString();
         imgHp.fillAmount = hp / hpMax;
 
+        if (hp <= hpMax * 0.8f) rangeAtk = 20;
+
         if (hp <= 0) Dead();
 
     }
 
     public void Move()
     {
+        AnimatorStateInfo info = ani.GetCurrentAnimatorStateInfo(0);
+        if (info.IsName("Hit") || info.IsName("Attack")) return;
+
         /** 判斷式移動寫法
         if (transform.position.x > Player.transform.position.x)
         {

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class Player : MonoBehaviour
 {
@@ -45,14 +46,16 @@ public class Player : MonoBehaviour
     private AudioSource aud;
     private Rigidbody2D rig;
     private Animator ani;
+    private SpriteRenderer spr;
 
     #endregion
-
+    
     public void Start()
     {
         rig = GetComponent<Rigidbody2D>();
         ani = GetComponent<Animator>();
         aud = GetComponent<AudioSource>();
+        spr = GetComponent<SpriteRenderer>();
         hpMax = health;
     }
 
@@ -179,11 +182,29 @@ public class Player : MonoBehaviour
         health -= getDamage;
         textHp.text = health.ToString();
         imgHp.fillAmount = health / hpMax;
+        StartCoroutine(DamageEffect());
 
         if (health <=0)
         {
             Death();
         }
+    }
+
+    private IEnumerator DamageEffect()
+    {
+        float interval = 0.1f;
+
+        Color red = new Color(1, 0.1f, 0.1f);    //指定顏色
+
+        for (int i = 0; i < 5; i++)
+        {
+            spr.color = red;                             //指定紅色
+            yield return new WaitForSeconds(interval);   //等待0.1秒
+            spr.color = Color.white;                     //指定白色
+            yield return new WaitForSeconds(interval);   //等待0.1秒
+        }
+        
+
     }
 
     private void Death()
@@ -192,6 +213,7 @@ public class Player : MonoBehaviour
         textHp.text = 0.ToString();
         ani.SetBool("die_switch", true);
         enabled = false;
+        rig.Sleep();
         transform.Find("US").gameObject.SetActive(false);
 
     }
