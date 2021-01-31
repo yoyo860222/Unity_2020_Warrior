@@ -81,8 +81,12 @@ public class Boss : MonoBehaviour
         textHp.text = hp.ToString();
         imgHp.fillAmount = hp / hpMax;
 
-        if (hp <= hpMax * 0.8f) rangeAtk = 20;
-
+        if (hp <= hpMax * 0.8f)
+        {
+            isSecond = true;
+            rangeAtk = 20;
+        }
+            
         if (hp <= 0) Dead();
 
     }
@@ -156,6 +160,11 @@ public class Boss : MonoBehaviour
         //如果 碰到物件 存在 玩家.受傷(攻擊力)
         if (hit) Player.Hurt(attack);
         StartCoroutine(cam.ShakeCamera());
+
+        if (isSecond)
+        {
+            psSecond.Play();
+        }
 
     }
 

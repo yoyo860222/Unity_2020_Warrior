@@ -42,6 +42,8 @@ public class Player : MonoBehaviour
     [Header("碰撞判斷範圍")]
     public float range;
 
+    [Header("結束畫面")]
+    public GameObject GameOver;
     
     private AudioSource aud;
     private Rigidbody2D rig;
@@ -209,6 +211,7 @@ public class Player : MonoBehaviour
 
     private void Death()
     {
+        GameOver.SetActive(true);
         health = 0;
         textHp.text = 0.ToString();
         ani.SetBool("die_switch", true);
