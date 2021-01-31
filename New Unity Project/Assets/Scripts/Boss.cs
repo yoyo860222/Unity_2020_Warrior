@@ -46,6 +46,8 @@ public class Boss : MonoBehaviour
     private Player Player;
     private float timer;
     private CameraFollow cam;
+    private bool isSecond;
+    private ParticleSystem psSecond;
 
 
     private void Start()
@@ -56,7 +58,7 @@ public class Boss : MonoBehaviour
         hpMax = hp;
         Player = FindObjectOfType<Player>();
         cam = FindObjectOfType<CameraFollow>();
-        
+        psSecond = GameObject.Find("二階段攻擊特效").GetComponent<ParticleSystem>();
 
     }
 
