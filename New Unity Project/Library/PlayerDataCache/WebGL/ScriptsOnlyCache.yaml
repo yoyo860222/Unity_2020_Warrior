@@ -2,6 +2,7 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - Boss
+    - BossTrigger
     - CameraFollow
     - GameManager
     - GateManager
@@ -67,11 +68,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12176}
     - Class: 114
-      Script: {instanceID: 12800}
+      Script: {instanceID: 12802}
     - Class: 114
-      Script: {instanceID: 13454}
+      Script: {instanceID: 13456}
     - Class: 114
-      Script: {instanceID: 13974}
+      Script: {instanceID: 13976}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -150,23 +151,25 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12442}
     - Class: 114
-      Script: {instanceID: 12542}
+      Script: {instanceID: 12522}
     - Class: 114
-      Script: {instanceID: 12800}
+      Script: {instanceID: 12544}
     - Class: 114
-      Script: {instanceID: 13454}
+      Script: {instanceID: 12802}
     - Class: 114
-      Script: {instanceID: 13664}
+      Script: {instanceID: 13456}
     - Class: 114
-      Script: {instanceID: 13924}
+      Script: {instanceID: 13666}
     - Class: 114
-      Script: {instanceID: 13974}
+      Script: {instanceID: 13926}
     - Class: 114
-      Script: {instanceID: 14012}
+      Script: {instanceID: 13976}
     - Class: 114
-      Script: {instanceID: 14046}
+      Script: {instanceID: 14014}
     - Class: 114
-      Script: {instanceID: 18824}
+      Script: {instanceID: 14048}
+    - Class: 114
+      Script: {instanceID: 16344}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -518,6 +521,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: ScrollRect
+  - hash:
+      serializedVersion: 2
+      Hash: b9383e5cfb60b76cf7f27a138d6e90c7
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GateManager
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -892,10 +901,10 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   - hash:
       serializedVersion: 2
-      Hash: b9383e5cfb60b76cf7f27a138d6e90c7
+      Hash: d41263fb25f1a629b9e1b1de789c5f26
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: GateManager
+    className: BossTrigger
   platform: 20
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
